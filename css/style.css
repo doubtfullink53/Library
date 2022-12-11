@@ -1,0 +1,8 @@
+.text-center button{
+    margin: 10vh;
+}
+
+/* stretch inputs to area */
+.input-group{
+    display: block !important;
+}
