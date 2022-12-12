@@ -1,44 +1,114 @@
-let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function (){
-   
-       return `${title} by ${author} , ${pages} pages ${read == true ? "read" : "not read yet"}`
-    }
+let myLibrary = [
+  // {
+  //   id: 0,
+  //   title: "A Game of Thrones ",
+  //   author: "George R. R. Martin",
+  //   pages: "694",
+  //   read: true,
+  // },
+];
+  myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
+
+function Book(id = 0, title, author, pages, read) {
+  this.id = id;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
 function addBookToLibrary(title) {
-    myLibrary.push(title)
-    
+  myLibrary.push(title);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
-// const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false)
-// console.log(addBookToLibrary(theHobbit))
+
+function displayBooks() {
+  var books = "";
+  myLibrary.forEach(function (book) {
+    books += `<div class="m-2 card " id="${book.id}" >
+     
+      <span>${book.title} </span>
+      <span>${book.author} </span>
+      <span>${book.pages} pages</span>
+      <span><input type="checkbox" id="read" name="read" class="read" ${
+        book.read == true ? "checked" : ""
+      }> Read  </span>
+      <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${book.id})">Remove</button>
+    </div> `;
+  });
+
+  document.getElementById("container").innerHTML = books;
+}
+
+displayBooks();
+
+// counter for id property in Array
+function makeCounter(i) {
+  var i = 1;
+  return function () {
+    return i++;
+  };
+  
+}
+var id = makeCounter();
 
 
+
+function removeCard(id){
+  
+  myLibrary = myLibrary.filter(x => {
+    return x.id != id ;
+  })
+  console.log(myLibrary);
+  displayBooks();
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
 
 function logSubmit(event) {
-  log.textContent = `complete`;
   
-  let newBook = new Book(title.value , author.value, pages.value, read[0].checked)
-  addBookToLibrary(newBook)
-  // console.log(newBook)
-  console.log(myLibrary[0])
+  console.log(myLibrary);
+  // if no items in array do not check for read check mark
+
+  if (myLibrary === undefined || myLibrary.length == 0) {
+    var readMark = "";
+    
+  }else{
+    readMark = read[0].checked;
+  }
+  
+  let newBook = new Book(
+    id(0),
+    title.value,
+    author.value,
+    pages.value,
+    readMark,
+  );
+  
+  addBookToLibrary(newBook);
+  displayBooks();
+  
   event.preventDefault();
 }
 
-console.log(myLibrary)
+function removeBook(id) {
+  myLibrary = myLibrary.filter((x) => {
+    return x.id != id;
+  });
+  console.log(myLibrary);
+  
+  
+}
 
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-const pages = document.getElementById('pages');
-const read = document.getElementsByClassName('read');
 
 
-// console.log(read)
-const form = document.getElementById('form');
-const log = document.getElementById('log');
-form.addEventListener('submit', logSubmit);
+
+
+
+const form = document.getElementById("form");
+const log = document.getElementById("log");
+form.addEventListener("submit", logSubmit);
+
+
+
+
