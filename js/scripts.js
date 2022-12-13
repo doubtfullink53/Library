@@ -1,16 +1,16 @@
 
 let myLibrary = [
-  // {
-  //   id: 0,
-  //   title: "A Game of Thrones ",
-  //   author: "George R. R. Martin",
-  //   pages: "694",
-  //   read: true,
-  // },
+  {
+    id: 0,
+    title: "A Game of Thrones ",
+    author: "George R. R. Martin",
+    pages: "694",
+    read: true,
+  },
 ];
-  myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
+  // myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
 
-function Book(id = 0, title, author, pages, read) {
+function Book(id = myLibrary[0].id , title, author, pages, read ) {
   this.id = id;
   this.title = title;
   this.author = author;
@@ -32,8 +32,8 @@ function displayBooks() {
       <span>${book.author} </span>
       <span>${book.pages} pages</span>
       <span><input type="checkbox" id="read" name="read" class="read" ${
-        book.read == true ? "checked" : ""
-      }> Read  </span>
+        book.read == true ? "checked" : "" 
+      } onclick="OnChangeCheckbox (this, ${book.id})"> Read  </span>
       <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${book.id})">Remove</button>
     </div> `;
   });
@@ -71,7 +71,7 @@ function logSubmit(event) {
   // if no items in array do not check for read check mark
 
   if (myLibrary === undefined || myLibrary.length == 0) {
-    var readMark = "";
+    var readMark = false;
     
   }else{
     readMark = read[0].checked;
@@ -99,6 +99,25 @@ function removeBook(id) {
   
   
 }
+
+function OnChangeCheckbox (checkbox, id) {
+  objIndex = myLibrary.findIndex((obj => obj.id == id));
+  if (checkbox.checked) {
+      // alert ("The check box is checked.");
+      
+      console.log("Before update: ", myLibrary[objIndex])
+      myLibrary[objIndex].read = true
+      console.log("After update: ", myLibrary[objIndex])
+  }
+  else {
+      // alert ("The check box is not checked.");
+      // objIndex = myLibrary.findIndex((obj => obj.id == id));
+      console.log("Before update: ", myLibrary[objIndex])
+      myLibrary[objIndex].read = false
+      console.log("After update: ", myLibrary[objIndex])
+  }
+}
+
 
 
 
