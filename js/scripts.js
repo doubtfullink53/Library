@@ -1,9 +1,9 @@
 let myLibrary = [
   {
     id: 0,
-    title: 'A Game of Thrones ',
-    author: 'George R. R. Martin',
-    pages: '694',
+    title: "A Game of Thrones ",
+    author: "George R. R. Martin",
+    pages: "694",
     read: true,
   },
 ];
@@ -19,29 +19,28 @@ function Book(id, title, author, pages, read) {
 
 function addBookToLibrary(title) {
   myLibrary.push(title);
-  
+
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function displayBooks() {
   var books = "";
-//  var checkbox = "";
+  //  var checkbox = "";
   myLibrary.forEach(function (book) {
     books += `<div class="m-2 card " id="${book.id}" >
      
       <span>${book.title} </span>
       <span>${book.author} </span>
       <span>${book.pages} pages</span>
-      <span><div class="form-check form-switch"><input type="checkbox"  class="form-check-input"  id="read" name="read" class="read" ${
+      <span><div class="form-check form-switch"><input type="checkbox"  class="form-check-input big-checkbox"  id="read" name="read" class="read" ${
         book.read == true ? "checked" : ""
       } onclick="OnChangeCheckbox (this, ${book.id})"> Read  </span></div>
       <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${
         book.id
       })">Remove</button>
     </div> `;
-    
-    
   });
+
 
   document.getElementById("container").innerHTML = books;
 }
@@ -74,7 +73,7 @@ function logSubmit(event) {
     title.value,
     author.value,
     pages.value,
-    (read = false),
+    (read = false)
   );
 
   addBookToLibrary(newBook);
@@ -88,15 +87,7 @@ function removeBook(id) {
     return x.id != id;
   });
   console.log(myLibrary);
- 
 }
-
-
-
-
-
-
-
 
 // on change of read checkbox change value of read in array
 function OnChangeCheckbox(checkbox, id) {

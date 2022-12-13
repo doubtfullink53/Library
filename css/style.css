@@ -27,6 +27,8 @@
   .card > span {
     font-size: 1rem;
   display: block;
+  margin: 10px;
+  
   }
 
   .d-flex{
@@ -36,3 +38,16 @@
   /* .card:nth-child(1){
     display: none;
   } */
+
+  .card  button {
+    margin-top: 20px;
+  }
+
+ 
+
+input[type=checkbox]
+{
+  transform: scale(1.6);
+  padding: 10px;
+  margin-right: 20px;
+}
