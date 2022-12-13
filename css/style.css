@@ -53,26 +53,27 @@ input[type=checkbox]
 }
 /* read or not read form size */
 #readform{
-  font-size: 200%; 
-   height: 10vh;
+  font-size: 100%; 
+   height: 5vw;
+   width: 100%;
   
 }
 /* remove scroll bar from read form  */
-#readform::-webkit-scrollbar{
-  width: 0px
+/* #readform::-webkit-scrollbar{
+  width: 0px;
 }
 #readform::-webkit-scrollbar-track-piece{
   background-color: transparent
-  -webkit-border-radius: 6px
-}
+  -webkit-border-radius: 6px;
+} */
 
 
 
 @media only screen and (max-width: 600px) {
   /* read or not read form size  for mobile phones*/
   #readform{
-    font-size: 200%; 
-     height: 15vh;
+    font-size: 100%; 
+     height: 5vh;
     
   }
 }
