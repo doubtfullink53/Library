@@ -44,10 +44,35 @@
   }
 
  
-
+/* size of read checkbox on each card */
 input[type=checkbox]
 {
   transform: scale(1.6);
   padding: 10px;
   margin-right: 20px;
+}
+/* read or not read form size */
+#readform{
+  font-size: 200%; 
+   height: 10vh;
+  
+}
+/* remove scroll bar from read form  */
+#readform::-webkit-scrollbar{
+  width: 0px
+}
+#readform::-webkit-scrollbar-track-piece{
+  background-color: transparent
+  -webkit-border-radius: 6px
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  /* read or not read form size  for mobile phones*/
+  #readform{
+    font-size: 200%; 
+     height: 15vh;
+    
+  }
 }
