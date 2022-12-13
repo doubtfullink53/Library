@@ -25,6 +25,7 @@ function addBookToLibrary(title) {
 
 function displayBooks() {
   var books = "";
+  // console.log(title.value)
   //  var checkbox = "";
   myLibrary.forEach(function (book) {
     books += `<div class="m-2 card " id="${book.id}" >
@@ -33,7 +34,7 @@ function displayBooks() {
       <span>${book.author} </span>
       <span>${book.pages} pages</span>
       <span><div class="form-check form-switch"><input type="checkbox"  class="form-check-input big-checkbox"  id="read" name="read" class="read" ${
-        book.read == true ? "checked" : ""
+        book.read == "true"  ? "checked" : ""
       } onclick="OnChangeCheckbox (this, ${book.id})"> Read  </span></div>
       <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${
         book.id
@@ -60,22 +61,22 @@ function removeCard(id) {
   myLibrary = myLibrary.filter((x) => {
     return x.id != id;
   });
-  console.log(myLibrary);
+  // console.log(myLibrary);
   displayBooks();
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function logSubmit(event) {
-  console.log(myLibrary);
-
+  // console.log(myLibrary);
+  console.log(readform.value);
   let newBook = new Book(
     id(),
     title.value,
     author.value,
     pages.value,
-    (read = false)
+    readform.value,
   );
-
+  console.log(myLibrary);
   addBookToLibrary(newBook);
   displayBooks();
 
@@ -106,6 +107,12 @@ function OnChangeCheckbox(checkbox, id) {
   }
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
+
+
+
+
+
+
 
 const form = document.getElementById("form");
 const log = document.getElementById("log");
