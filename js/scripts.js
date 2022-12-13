@@ -1,4 +1,12 @@
-let myLibrary = [];
+let myLibrary = [
+  {
+    id: 0,
+    title: 'A Game of Thrones ',
+    author: 'George R. R. Martin',
+    pages: '694',
+    read: true,
+  },
+];
 myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
 
 function Book(id, title, author, pages, read) {
@@ -11,12 +19,13 @@ function Book(id, title, author, pages, read) {
 
 function addBookToLibrary(title) {
   myLibrary.push(title);
+  
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function displayBooks() {
   var books = "";
-
+//  var checkbox = "";
   myLibrary.forEach(function (book) {
     books += `<div class="m-2 card " id="${book.id}" >
      
@@ -30,7 +39,10 @@ function displayBooks() {
         book.id
       })">Remove</button>
     </div> `;
+    
+    
   });
+
   document.getElementById("container").innerHTML = books;
 }
 
@@ -56,22 +68,13 @@ function removeCard(id) {
 
 function logSubmit(event) {
   console.log(myLibrary);
-  // if no items in array do not check for read check mark
-
-  // if (myLibrary === undefined || myLibrary.length == 0) {
-  //   var readMark = false;
-
-  // }
-  // else {
-  //   readMark ;
-  // }
 
   let newBook = new Book(
     id(),
     title.value,
     author.value,
     pages.value,
-    (read = false)
+    (read = false),
   );
 
   addBookToLibrary(newBook);
@@ -85,8 +88,17 @@ function removeBook(id) {
     return x.id != id;
   });
   console.log(myLibrary);
+ 
 }
 
+
+
+
+
+
+
+
+// on change of read checkbox change value of read in array
 function OnChangeCheckbox(checkbox, id) {
   objIndex = myLibrary.findIndex((obj) => obj.id == id);
   if (checkbox.checked) {
