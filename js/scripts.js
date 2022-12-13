@@ -8,7 +8,7 @@ let myLibrary = [
     read: true,
   },
 ];
-  // myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
+  myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
 
 function Book(id = myLibrary[0].id , title, author, pages, read ) {
   this.id = id;
@@ -37,6 +37,7 @@ function displayBooks() {
       <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${book.id})">Remove</button>
     </div> `;
   });
+  
 
   document.getElementById("container").innerHTML = books;
 }
@@ -70,19 +71,20 @@ function logSubmit(event) {
   console.log(myLibrary);
   // if no items in array do not check for read check mark
 
-  if (myLibrary === undefined || myLibrary.length == 0) {
-    var readMark = false;
+  // if (myLibrary === undefined || myLibrary.length == 0) {
+  //   var readMark = false;
     
-  }else{
-    readMark = read[0].checked;
-  }
+  // }
+  // else {
+  //   readMark ;
+  // }
   
   let newBook = new Book(
     id(0),
     title.value,
     author.value,
     pages.value,
-    readMark,
+    read.checked,
   );
   
   addBookToLibrary(newBook);
@@ -116,6 +118,7 @@ function OnChangeCheckbox (checkbox, id) {
       myLibrary[objIndex].read = false
       console.log("After update: ", myLibrary[objIndex])
   }
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 
