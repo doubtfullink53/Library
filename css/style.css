@@ -20,12 +20,14 @@
   width: 300px;
   height: 300px;
   transition: all linear 200ms;
+  word-break: break-all;
 }
 
 .card > span {
   font-size: 1rem;
   display: block;
   margin: 10px;
+  
 }
 
 .d-flex {

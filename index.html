@@ -72,22 +72,23 @@
                             <!-- Name input -->
                               <div id="0"></div>
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="title" class="form-control"  placeholder="Title"/>
+                                    <input type="text" id="title" class="form-control"  placeholder="Title" maxlength="50"/>
                                 </div>
                             
                             <!-- Title input -->
                                 <div class="form-outline mb-4">
-                                    <input type="text" id="author" class="form-control" placeholder="Author"/>
+                                    <input type="text" id="author" class="form-control" placeholder="Author" maxlength="20"/>
                                     
                                 </div>
                                  <!-- Pages input -->
                                  <div class="form-outline mb-4">
-                                    <input type="number" id="pages" class="form-control" placeholder="Pages"/>
+                                    <input type="text" id="pages" class="form-control" placeholder="Pages" maxlength="7" 
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                     
                                 </div>
                                  <!-- Read input -->
                                  <div class="form-group">
-                                  <select id="readform" name="readform" class=" form-select form-contro "  >
+                                  <select id="readform" name="readform" class=" form-select form-control "  >
                                     <option value="true">Read</option>
                                     <option value="false" selected>Not Read</option>
                                   </select>
