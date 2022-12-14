@@ -1,13 +1,17 @@
-let myLibrary = [
-  {
-    id: 0,
-    title: "A Game of Thrones ",
-    author: "George R. R. Martin",
-    pages: "694",
-    read: true,
-  },
-];
+
+// let myLibrary = [
+//   {
+//     id: 0,
+//     title: "A Game of Thrones ",
+//     author: "George R. R. Martin",
+//     pages: "694",
+//     read: true,
+//   },
+// ];
+
+
 myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
+// console.log(myLibrary)
 
 function Book(id, title, author, pages, read) {
   this.id = id;
@@ -20,13 +24,12 @@ function Book(id, title, author, pages, read) {
 function addBookToLibrary(title) {
   myLibrary.push(title);
 
-  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  // localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function displayBooks() {
   var books = "";
-  // console.log(title.value)
-  //  var checkbox = "";
+
   myLibrary.forEach(function (book) {
     books += `<div class="m-2 card " id="${book.id}" >
      
@@ -34,15 +37,16 @@ function displayBooks() {
       <span>${book.author} </span>
       <span>${book.pages} pages</span>
       <span><div class="form-check form-switch"><input type="checkbox"  class="form-check-input big-checkbox"  id="read" name="read" class="read" ${
-        book.read == "true"  ? "checked" : ""
+        book.read == "true" ? "checked" : ""
       } onclick="OnChangeCheckbox (this, ${book.id})"> Read  </span></div>
       <button type="button" class="btn mb-2 btn-secondary" onclick="removeCard(${
         book.id
       })">Remove</button>
     </div> `;
+   
   });
 
-
+ 
   document.getElementById("container").innerHTML = books;
 }
 
@@ -96,13 +100,13 @@ function OnChangeCheckbox(checkbox, id) {
   if (checkbox.checked) {
     // alert ("The check box is checked.");
     // console.log("Before update: ", myLibrary[objIndex])
-    myLibrary[objIndex].read = true;
+    myLibrary[objIndex].read = "true";
     // console.log("After update: ", myLibrary[objIndex])
   } else {
     // alert("The check box is not checked.");
     // objIndex = myLibrary.findIndex((obj => obj.id == id));
     // console.log("Before update: ", myLibrary[objIndex])
-    myLibrary[objIndex].read = false;
+    myLibrary[objIndex].read = "false";
     // console.log("After update: ", myLibrary[objIndex])
   }
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
