@@ -31,7 +31,7 @@
 }
 
 .d-flex {
-  justify-content: center !important;
+  justify-content: center ;
 }
 
 
@@ -58,4 +58,6 @@ input[type="checkbox"] {
     font-size: 100%;
     height: 5vh;
   }
+
+
 }

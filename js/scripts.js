@@ -83,7 +83,7 @@ function logSubmit(event) {
   console.log(myLibrary);
   addBookToLibrary(newBook);
   displayBooks();
-
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   event.preventDefault();
 }
 
@@ -111,7 +111,6 @@ function OnChangeCheckbox(checkbox, id) {
   }
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
-
 
 
 
