@@ -1,13 +1,4 @@
 
-// let myLibrary = [
-//   {
-//     id: 0,
-//     title: "A Game of Thrones ",
-//     author: "George R. R. Martin",
-//     pages: "694",
-//     read: true,
-//   },
-// ];
 
 
 myLibrary = JSON.parse(localStorage.getItem("myLibrary") || "[]");
@@ -120,3 +111,11 @@ function OnChangeCheckbox(checkbox, id) {
 const form = document.getElementById("form");
 const log = document.getElementById("log");
 form.addEventListener("submit", logSubmit);
+
+// add dismiss modal after forms are verified it will close the form to show cards currently in array.
+ validateForm = () => {
+  let title = document.getElementById("title").value
+  let submitBtn = document.getElementById("submitBtn")
+
+  title !== "" ? "" : submitBtn.setAttribute( "data-bs-dismiss", "modal") 
+}
