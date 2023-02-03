@@ -102,7 +102,23 @@ function OnChangeCheckbox(checkbox, id) {
   }
   localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
+function inputValidationHideModal(){
+  let title = document.getElementById("title");
+  let author = document.getElementById("author");
+  let pages = document.getElementById("pages");
+  const inputs = [title, author, pages];
 
+  const handleChange = function() {
+    if (inputs.every(input => input.value !== "")) {
+      submitBtn.setAttribute("data-bs-dismiss", "modal");
+    } else {
+      submitBtn.removeAttribute("data-bs-dismiss");
+    }
+  };
+
+  inputs.forEach(input => input.addEventListener("change", handleChange));
+
+}
 
 
 
@@ -111,11 +127,7 @@ function OnChangeCheckbox(checkbox, id) {
 const form = document.getElementById("form");
 const log = document.getElementById("log");
 form.addEventListener("submit", logSubmit);
+inputValidationHideModal();
 
-// add dismiss modal after forms are verified it will close the form to show cards currently in array.
- validateForm = () => {
-  let title = document.getElementById("title").value
-  let submitBtn = document.getElementById("submitBtn")
 
-  title !== "" ? "" : submitBtn.setAttribute( "data-bs-dismiss", "modal") 
-}
+
